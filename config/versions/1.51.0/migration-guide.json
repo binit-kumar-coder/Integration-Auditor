@@ -1,0 +1,128 @@
+{
+  "version": "1.51.0",
+  "name": "Version 1.51.0 Migration and Compatibility Guide",
+  "description": "Cross-product migration guidance and compatibility matrix for v1.51.0",
+  "applicableProducts": ["shopify-netsuite", "shopify-hubspot"],
+  
+  "versionOverview": {
+    "releaseDate": "2023-09-01",
+    "stabilityLevel": "production-stable",
+    "supportStatus": "active",
+    "endOfLifeDate": "2025-12-31",
+    "description": "Stable production version with mature feature set"
+  },
+  
+  "crossProductCompatibility": {
+    "description": "Compatibility requirements across all products for v1.51.0",
+    "sharedDependencies": {
+      "nodeJSVersion": ">=18.0.0",
+      "integrationFramework": "1.51.x",
+      "auditingFramework": "1.5.x",
+      "securityFramework": "1.8.x"
+    },
+    "apiCompatibility": {
+      "restAPIVersion": "v1",
+      "webhookVersion": "2023-04",
+      "authenticationModel": "OAuth 1.0a/2.0"
+    }
+  },
+  
+  "migrationPaths": {
+    "description": "Supported migration paths for v1.51.0",
+    "fromV1_50": {
+      "supported": true,
+      "automatic": true,
+      "riskLevel": "low",
+      "estimatedTime": "2 hours",
+      "rollbackSupported": true,
+      "businessImpact": "minimal"
+    },
+    "fromV1_49": {
+      "supported": true,
+      "automatic": false,
+      "riskLevel": "medium", 
+      "estimatedTime": "8 hours",
+      "rollbackSupported": true,
+      "businessImpact": "moderate",
+      "manualStepsRequired": [
+        "Update authentication configuration",
+        "Migrate webhook endpoints",
+        "Validate data mappings"
+      ]
+    },
+    "toV1_52": {
+      "supported": true,
+      "automatic": true,
+      "riskLevel": "low",
+      "estimatedTime": "1 hour",
+      "rollbackSupported": true,
+      "businessImpact": "none"
+    },
+    "toV2_0": {
+      "supported": true,
+      "automatic": false,
+      "riskLevel": "high",
+      "estimatedTime": "40 hours",
+      "rollbackSupported": true,
+      "businessImpact": "significant",
+      "requiresEnterpriseLicense": true,
+      "requiresAILicense": true,
+      "manualStepsRequired": [
+        "Obtain AI and enterprise licenses",
+        "Complete security assessment",
+        "Set up AI configuration",
+        "Train team on new features",
+        "Complete compliance validation"
+      ]
+    }
+  },
+  
+  "sharedValidationRules": {
+    "description": "Validation rules common to all products in v1.51.0",
+    "basicRequirements": {
+      "minimumResourceCount": 5,
+      "maximumResourceCount": 200,
+      "requiredConnectionTypes": ["primary", "secondary"],
+      "minimumStoreCount": 1,
+      "maximumStoreCount": 100
+    },
+    "securityRequirements": {
+      "encryptionRequired": true,
+      "auditLoggingRequired": true,
+      "accessControlRequired": true
+    },
+    "complianceRequirements": {
+      "dataRetentionCompliance": true,
+      "changeTrackingRequired": true,
+      "approvalWorkflowRequired": false
+    }
+  },
+  
+  "deprecationNotices": {
+    "description": "Features deprecated in v1.51.0 across all products",
+    "deprecatedAPIs": [
+      "legacy-rest-api-v1",
+      "basic-webhook-v1",
+      "simple-auth-v1"
+    ],
+    "deprecatedFeatures": [
+      "basic-sync-mode",
+      "manual-conflict-resolution",
+      "simple-audit-logging"
+    ],
+    "removalTimeline": {
+      "warningPeriod": "6 months",
+      "deprecationDate": "2024-03-01",
+      "removalDate": "2024-09-01"
+    }
+  },
+  
+  "metadata": {
+    "enterpriseOwner": "Enterprise Architecture Team",
+    "versionManager": "Product Version Management Team",
+    "lastReviewed": "2025-09-23",
+    "reviewCycle": "quarterly",
+    "crossProductCoordination": true,
+    "migrationSupport": "full"
+  }
+}

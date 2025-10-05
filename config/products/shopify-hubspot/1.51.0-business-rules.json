@@ -1,0 +1,166 @@
+{
+  "product": "shopify-hubspot",
+  "version": "1.51.0",
+  "name": "Shopify-HubSpot Integration Business Rules",
+  "description": "Business validation rules for Shopify-HubSpot integration v1.51.0",
+  
+  "editionRequirements": {
+    "description": "Resource requirements for Shopify-HubSpot integration by edition",
+    "starter": {
+      "importsPerStore": 8,
+      "exportsPerStore": 12, 
+      "flowsPerStore": 10,
+      "description": "Starter edition for Shopify-HubSpot CRM sync",
+      "requiredImports": [
+        "shopify_customer_import_adaptor",
+        "shopify_order_import_adaptor",
+        "shopify_product_import_adaptor",
+        "shopify_inventory_import_adaptor",
+        "hubspot_contact_import_adaptor",
+        "hubspot_deal_import_adaptor",
+        "hubspot_company_import_adaptor",
+        "hubspot_product_import_adaptor"
+      ],
+      "requiredExports": [
+        "shopify_customer_export_adaptor",
+        "shopify_order_export_adaptor",
+        "shopify_product_export_adaptor",
+        "shopify_inventory_export_adaptor",
+        "hubspot_contact_export_adaptor",
+        "hubspot_deal_export_adaptor",
+        "hubspot_company_export_adaptor",
+        "hubspot_activity_export_adaptor",
+        "hubspot_email_export_adaptor",
+        "hubspot_marketing_export_adaptor",
+        "hubspot_analytics_export_adaptor",
+        "hubspot_pipeline_export_adaptor"
+      ],
+      "requiredFlows": [
+        "shopify_customer_sync_flow",
+        "shopify_order_sync_flow",
+        "shopify_product_sync_flow",
+        "hubspot_contact_sync_flow",
+        "hubspot_deal_sync_flow",
+        "hubspot_company_sync_flow",
+        "hubspot_activity_flow",
+        "hubspot_email_campaign_flow",
+        "shopify_abandoned_cart_flow",
+        "hubspot_lead_scoring_flow"
+      ]
+    },
+    "premium": {
+      "importsPerStore": 15,
+      "exportsPerStore": 20,
+      "flowsPerStore": 18,
+      "description": "Premium edition with marketing automation and advanced CRM features",
+      "inheritsFrom": "starter",
+      "additionalImports": [
+        "shopify_abandoned_cart_import_adaptor",
+        "shopify_analytics_import_adaptor",
+        "shopify_review_import_adaptor",
+        "hubspot_marketing_import_adaptor",
+        "hubspot_workflow_import_adaptor",
+        "hubspot_automation_import_adaptor",
+        "hubspot_lead_scoring_import_adaptor"
+      ],
+      "additionalExports": [
+        "shopify_marketing_export_adaptor",
+        "shopify_review_export_adaptor",
+        "shopify_analytics_export_adaptor",
+        "hubspot_workflow_export_adaptor",
+        "hubspot_automation_export_adaptor",
+        "hubspot_lead_export_adaptor",
+        "hubspot_campaign_export_adaptor",
+        "hubspot_report_export_adaptor"
+      ],
+      "additionalFlows": [
+        "shopify_marketing_automation_flow",
+        "shopify_review_sync_flow",
+        "hubspot_workflow_automation_flow",
+        "hubspot_lead_nurturing_flow",
+        "hubspot_campaign_management_flow",
+        "shopify_customer_journey_flow",
+        "hubspot_analytics_flow",
+        "cross_platform_reporting_flow"
+      ]
+    }
+  },
+  
+  "productSpecificRules": {
+    "description": "Shopify-HubSpot specific validation rules",
+    "hubspotValidation": {
+      "requireHubSpotConnection": true,
+      "requiredHubSpotProperties": [
+        "hubspotConnectionId",
+        "hubspotPortalId",
+        "hubspotAPIKey"
+      ],
+      "validateHubSpotSync": true,
+      "requiredHubSpotFeatures": [
+        "contacts_api",
+        "deals_api",
+        "companies_api"
+      ]
+    },
+    "shopifyValidation": {
+      "requireShopifyConnection": true,
+      "validateWebhooks": true,
+      "requiredShopifyFeatures": [
+        "customer_api",
+        "order_api",
+        "product_api",
+        "analytics_api"
+      ]
+    },
+    "crossPlatformValidation": {
+      "validateDataMapping": true,
+      "requireSyncConfiguration": true,
+      "validateDuplicateHandling": true
+    }
+  },
+  
+  "versionSpecificRules": {
+    "description": "Rules specific to Shopify-HubSpot v1.51.0",
+    "newFeatures": [
+      "abandoned_cart_recovery",
+      "advanced_lead_scoring",
+      "cross_platform_analytics"
+    ],
+    "deprecatedFeatures": [
+      "legacy_hubspot_v2_api"
+    ],
+    "compatibilityRequirements": {
+      "minHubSpotAPIVersion": "v3",
+      "minShopifyAPIVersion": "2023-04",
+      "requiresOAuth2": true
+    }
+  },
+  
+  "licenseValidation": {
+    "validEditions": ["starter", "premium"],
+    "maxSettingsSize": 1048576,
+    "productFamily": "shopify-hubspot"
+  },
+  
+  "requiredProperties": {
+    "topLevel": ["settings", "version"],
+    "settingsLevel": ["connectorEdition", "hubspotConfig", "shopifyConfig", "syncSettings"],
+    "hubspotConfig": ["hubspotConnectionId", "hubspotPortalId", "hubspotAPIKey"],
+    "shopifyConfig": ["shopifyConnectionId", "shopifyStoreUrl", "shopifyAPIKey"],
+    "syncSettings": ["bidirectionalSync", "conflictResolution", "syncFrequency"]
+  },
+  
+  "tolerances": {
+    "resourceCountTolerance": 0,
+    "configurationDriftTolerance": "none"
+  },
+  
+  "metadata": {
+    "businessOwner": "CRM Integration Team",
+    "technicalOwner": "HubSpot Integration Team",
+    "lastReviewed": "2025-09-23",
+    "reviewCycle": "monthly",
+    "changeApprovalRequired": true,
+    "productSpecialization": "CRM and marketing automation"
+  }
+}

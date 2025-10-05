@@ -1,0 +1,147 @@
+{
+  "name": "Remediation Logic Configuration",
+  "version": "1.0.0", 
+  "description": "All remediation business logic externalized for business control",
+  
+  "actionTemplates": {
+    "description": "Templates for different types of remediation actions",
+    
+    "resourceCountAdjustment": {
+      "description": "Logic for adjusting resource counts to match edition requirements",
+      "strategy": "smart-adjustment",
+      "rules": {
+        "tooMany": {
+          "action": "delete",
+          "strategy": "keep-most-recent",
+          "batchSize": 10,
+          "reason": "Remove excess {resourceType} to match {edition} edition requirements"
+        },
+        "tooFew": {
+          "action": "create",
+          "strategy": "clone-from-template",
+          "reason": "Create missing {resourceType} to match {edition} edition requirements"
+        }
+      }
+    },
+    
+    "licenseEditionMismatch": {
+      "description": "Fix license vs settings edition mismatches",
+      "action": "patch",
+      "targetPath": "settings.connectorEdition",
+      "valueSource": "integration.licenseEdition",
+      "reason": "Update connector edition to match license: {oldValue} → {newValue}",
+      "validation": {
+        "validateBeforeChange": true,
+        "backupOriginalValue": true
+      }
+    },
+    
+    "missingProperties": {
+      "description": "Add missing required configuration properties",
+      "action": "patch",
+      "strategy": "add-defaults",
+      "defaultValues": {
+        "settings.commonresources.netsuiteConnectionId": "",
+        "settings.commonresources.nsUtilImportAdaptorApiIdentifier": "",
+        "settings.commonresources.nsUtilImportAdaptorId": "",
+        "settings.storemap": [],
+        "settings.sections": [],
+        "settings.general": {}
+      },
+      "sectionDefaults": {
+        "shopInstallComplete": true,
+        "mode": "active"
+      },
+      "reason": "Add missing required property: {propertyPath}"
+    },
+    
+    "stuckUpdateProcess": {
+      "description": "Clear stuck update process flags",
+      "action": "patch",
+      "targetPath": "updateInProgress", 
+      "value": false,
+      "reason": "Clear stuck update process flag",
+      "validation": {
+        "confirmStuck": true,
+        "checkLastUpdateTime": true,
+        "maxUpdateDuration": "24h"
+      }
+    },
+    
+    "offlineConnections": {
+      "description": "Reconnect offline connections with active resources",
+      "action": "reconnect",
+      "strategy": "test-and-reconnect",
+      "maxRetries": 3,
+      "reason": "Reconnect offline connection: {connectionId} (has {activeResourcesCount} active resources)",
+      "validation": {
+        "testConnectionFirst": true,
+        "verifyActiveResources": true,
+        "requireConfirmation": true
+      }
+    }
+  },
+  
+  "executionStrategy": {
+    "description": "How to execute remediation actions",
+    "batchProcessing": {
+      "enabled": true,
+      "defaultBatchSize": 50,
+      "maxConcurrent": 10
+    },
+    "priorityExecution": {
+      "enabled": true,
+      "executeHighPriorityFirst": true,
+      "priorityGroups": {
+        "emergency": [1, 2, 3],
+        "urgent": [4, 5, 6], 
+        "normal": [7, 8, 9]
+      }
+    },
+    "safetyControls": {
+      "requireConfirmationAbove": 50,
+      "maxActionsPerIntegration": 100,
+      "maxDestructiveActions": 20
+    }
+  },
+  
+  "rollbackStrategy": {
+    "description": "How to handle rollbacks",
+    "autoGenerateRollback": true,
+    "rollbackActionMapping": {
+      "create": "delete",
+      "delete": "create", 
+      "patch": "patch-reverse",
+      "reconnect": "disconnect",
+      "adjust": "adjust-reverse"
+    },
+    "rollbackDataCapture": {
+      "captureBeforeState": true,
+      "captureAfterState": true,
+      "captureTimestamp": true,
+      "captureOperator": true
+    }
+  },
+  
+  "businessImpactMapping": {
+    "description": "Business impact classification for different corruption types",
+    "resourceCountIssues": {
+      "businessImpact": "high",
+      "description": "Affects data flow and integration functionality",
+      "urgency": "medium",
+      "approvalRequired": false
+    },
+    "configurationIssues": {
+      "businessImpact": "medium", 
+      "description": "Affects integration behavior and compliance",
+      "urgency": "low",
+      "approvalRequired": false
+    },
+    "operationalIssues": {
+      "businessImpact": "critical",
+      "description": "Blocks integration operations immediately", 
+      "urgency": "immediate",
+      "approvalRequired": true
+    }
+  }
+}

@@ -1,0 +1,247 @@
+{
+  "product": "shopify-netsuite",
+  "version": "1.51.0",
+  "name": "Shopify-NetSuite Integration Business Rules",
+  "description": "Business validation rules for Shopify-NetSuite integration v1.51.0",
+  
+  "editionRequirements": {
+    "description": "Resource requirements for Shopify-NetSuite integration by edition",
+    "starter": {
+      "importsPerStore": 16,
+      "exportsPerStore": 19, 
+      "flowsPerStore": 16,
+      "description": "Starter edition baseline: 19 exports, 16 imports, 16 flows per store",
+      "requiredImports": [
+        "shopify_auto_billing_cashsale_import_adaptor",
+        "shopify_auto_billing_invoice_import_adaptor", 
+        "shopify_netsuite_cashsale_order_import_adaptor",
+        "shopify_netsuite_customer_import_adaptor",
+        "shopify_netsuite_customer_deposit_import_adaptor",
+        "shopify_netsuite_inactivate_itemid_import_adaptor",
+        "shopify_fulfillment_order_import_adaptor",
+        "shopify_fulfillment_order_import_location_adaptor",
+        "shopify_inventory_import_adaptor",
+        "shopify_kit_inventory_import_adaptor",
+        "shopify_nsUtil_import_adaptor",
+        "shopify_netsuite_order_import_adaptor",
+        "shopify_netsuite_store_info_import_adaptor",
+        "shopify_netsuite_order_transactions_import_adaptor",
+        "shopify_netsuite_variants_import_adaptor",
+        "shopify_webhook_register_import_adaptor"
+      ],
+      "requiredExports": [
+        "shopify_auto_billing_cashsale_export_adaptor",
+        "shopify_auto_billing_invoice_export_adaptor",
+        "shopify_batch_order_export_adaptor",
+        "shopify_cashsale_orders_export_adaptor",
+        "shopify_customer_export_adaptor",
+        "shopify_customer_deposit_export_adaptor",
+        "shopify_variant_delete_webhook_export_adaptor",
+        "shopify_variant_delete_export_adaptor",
+        "shopify_netsuite_fulfillment_export_adaptor",
+        "shopify_fulfillment_order_lookup_adaptor",
+        "shopify_netsuite_inventory_export_adaptor",
+        "shopify_netsuite_kit_inventory_export_adaptor",
+        "shopify_onDemand_order_export_adaptor",
+        "shopify_order_export_adaptor",
+        "shopify_shop_update_export_adaptor",
+        "shopify_order_transaction_export_adaptor",
+        "shopify_variants_export_adaptor",
+        "shopify_variant_ids_webhook_export_adaptor",
+        "shopify_variant_ids_export_adaptor"
+      ],
+      "requiredFlows": [
+        "shopify_auto_billing_cashsale_flow",
+        "shopify_auto_billing_invoice_flow",
+        "shopify_batch_order_import_flow",
+        "shopify_cashsale_order_import_flow",
+        "shopify_customer_import_flow",
+        "shopify_customer_deposit_import_flow",
+        "shopify_deleted_variants_import_flow",
+        "shopify_netsuite_fulfillment_export_flow",
+        "shopify_netsuite_inventory_export_flow",
+        "shopify_netsuite_kit_inventory_export_flow",
+        "shopify_onDemand_order_import_flow",
+        "shopify_order_import_flow",
+        "shopify_store_info_update_flow",
+        "shopify_order_transactions_import_flow",
+        "shopify_variants_import_flow",
+        "shopify_variant_ids_import_flow"
+      ]
+    },
+    "standard": {
+      "importsPerStore": 21,
+      "exportsPerStore": 23,
+      "flowsPerStore": 20,
+      "description": "Standard edition: starter + 4 additional (5 imports, 4 exports, 4 flows per store)",
+      "inheritsFrom": "starter",
+      "additionalImports": [
+        "shopify_billing_import_adaptor",
+        "shopify_delete_metafields_import_adaptor",
+        "shopify_image_import_adaptor",
+        "shopify_matrix_item_import_adaptor",
+        "shopify_item_import_adaptor"
+      ],
+      "additionalExports": [
+        "shopify_netsuite_billing_export_adaptor",
+        "shopify_netsuite_image_export_adaptor",
+        "shopify_netsuite_matrix_item_export_adaptor",
+        "shopify_netsuite_item_export_adaptor"
+      ],
+      "additionalFlows": [
+        "shopify_netsuite_billing_export_flow",
+        "shopify_netsuite_image_export_flow",
+        "shopify_netsuite_matrix_item_export_flow",
+        "shopify_netsuite_item_export_flow"
+      ]
+    },
+    "premium": {
+      "importsPerStore": 32,
+      "exportsPerStore": 32,
+      "flowsPerStore": 27,
+      "description": "Premium edition: standard + 11 additional imports, 9 exports, 7 flows per store",
+      "inheritsFrom": "standard",
+      "additionalImports": [
+        "shopify_cancellation_import_adaptor",
+        "shopify_netsuite_address_id_import_adaptor",
+        "shopify_netsuite_customer_id_import_adaptor",
+        "shopify_netsuite_customer_refund_import_adaptor",
+        "shopify_netsuite_order_id_import_adaptor",
+        "shopify_netsuite_refund_order_import_adaptor",
+        "shopify_order_import_adaptor",
+        "shopify_customer_import_adaptor",
+        "shopify_netsuite_fulfillment_import",
+        "shopify_refund_import_adaptor",
+        "shopify_netsuite_deposit_import_adaptor"
+      ],
+      "additionalExports": [
+        "shopify_netsuite_order_export_adaptor",
+        "shopify_netsuite_customer_export_adaptor",
+        "shopify_netsuite_fulfillment_export_adaptor",
+        "shopify_fulfillment_order_export_adaptor",
+        "shopify_customer_export_lookup",
+        "shopify_cancel_order_export_adaptor",
+        "shopify_refund_order_export_adaptor",
+        "shopify_netsuite_cancellation_export_adaptor",
+        "shopify_netsuite_refund_export_adaptor"
+      ],
+      "additionalFlows": [
+        "shopify_netsuite_order_export_flow",
+        "shopify_netsuite_customer_export_flow",
+        "shopify_netsuite_fulfillment_export_flow",
+        "shopify_cancel_order_import_flow",
+        "shopify_order_refunds_import_flow",
+        "shopify_netsuite_fulfillment_flow",
+        "shopify_netsuite_cancellation_export_flow"
+      ]
+    },
+    "shopifymarkets": {
+      "importsPerStore": 34,
+      "exportsPerStore": 32,
+      "flowsPerStore": 27,
+      "description": "Shopify Markets edition: premium + 2 additional imports per store",
+      "inheritsFrom": "premium",
+      "additionalImports": [
+        "shopify_item_hscode_import_adaptor",
+        "shopify_netsuite_item_pricelist_import"
+      ],
+      "additionalExports": [],
+      "additionalFlows": []
+    },
+    "markets": {
+      "importsPerStore": 34,
+      "exportsPerStore": 32,
+      "flowsPerStore": 27,
+      "description": "Alias for shopifymarkets edition",
+      "inheritsFrom": "shopifymarkets",
+      "additionalImports": [],
+      "additionalExports": [],
+      "additionalFlows": []
+    }
+  },
+  
+  "productSpecificRules": {
+    "description": "Shopify-NetSuite specific validation rules",
+    "netsuiteValidation": {
+      "requireNetSuiteConnection": true,
+      "requiredNetSuiteProperties": [
+        "netsuiteConnectionId",
+        "nsUtilImportAdaptorApiIdentifier",
+        "nsUtilImportAdaptorId"
+      ],
+      "validateNetSuiteSync": true
+    },
+    "shopifyValidation": {
+      "requireShopifyConnection": true,
+      "validateWebhooks": true,
+      "requiredShopifyFeatures": [
+        "inventory_sync",
+        "order_sync",
+        "customer_sync"
+      ]
+    }
+  },
+  
+  "versionSpecificRules": {
+    "description": "Rules specific to version 1.51.0",
+    "deprecatedFeatures": [],
+    "newFeatures": [
+      "fulfillment_order_support",
+      "graphql_import_adaptors",
+      "enhanced_billing_automation"
+    ],
+    "compatibilityRequirements": {
+      "minNetSuiteVersion": "2023.1",
+      "minShopifyAPIVersion": "2023-04"
+    }
+  },
+  
+  "licenseValidation": {
+    "validEditions": ["starter", "standard", "premium", "shopifymarkets", "markets"],
+    "maxSettingsSize": 1048576,
+    "productFamily": "shopify-netsuite"
+  },
+  
+  "requiredProperties": {
+    "topLevel": ["settings", "version"],
+    "settingsLevel": ["connectorEdition", "commonresources", "general", "storemap", "sections"],
+    "commonresources": ["netsuiteConnectionId", "nsUtilImportAdaptorApiIdentifier", "nsUtilImportAdaptorId"],
+    "sectionProperties": ["shopInstallComplete", "id", "mode"]
+  },
+  
+  "offlineConnectionRules": {
+    "description": "Rules for detecting problematic offline connections",
+    "detectOfflineWithActiveResources": true,
+    "crossReferenceFields": {
+      "imports": "connectionId",
+      "exports": "connectionId"
+    },
+    "connectionOfflineField": "offline",
+    "connectionOfflineValues": [true, "true", "1"],
+    "severity": "high",
+    "allowOrphanedConnections": true
+  },
+  
+  "updateProcessRules": {
+    "description": "Rules for detecting stuck update processes",
+    "updateInProgressField": "updateInProgress",
+    "updateInProgressValues": [true, "true", "1"],
+    "csvFieldName": "UPDATEINPROGRESS",
+    "severity": "high",
+    "priority": 3,
+    "blockingImpact": true
+  },
+  
+  "tolerances": {
+    "resourceCountTolerance": 0,
+    "configurationDriftTolerance": "none"
+  },
+  
+  "metadata": {
+    "businessOwner": "Shopify-NetSuite Integration Team",
+    "technicalOwner": "Integration Development Team",
+    "lastReviewed": "2025-09-23",
+    "reviewCycle": "quarterly",
+    "changeApprovalRequired": true
+  }
+}

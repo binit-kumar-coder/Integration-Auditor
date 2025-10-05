@@ -1,0 +1,236 @@
+{
+  "product": "shopify-hubspot",
+  "version": "2.0.0",
+  "name": "Shopify-HubSpot Integration Business Rules v2.0",
+  "description": "Next generation CRM integration with AI-powered customer insights",
+  
+  "editionRequirements": {
+    "description": "Enhanced resource requirements for Shopify-HubSpot v2.0",
+    "starter": {
+      "importsPerStore": 12,
+      "exportsPerStore": 15,
+      "flowsPerStore": 12,
+      "description": "Starter edition v2.0 with enhanced CRM baseline",
+      "requiredImports": [
+        "shopify_customer_import_adaptor_v2",
+        "shopify_order_import_adaptor_v2",
+        "shopify_product_import_adaptor_v2",
+        "shopify_inventory_import_adaptor_v2",
+        "shopify_analytics_import_adaptor_v2",
+        "hubspot_contact_import_adaptor_v2",
+        "hubspot_deal_import_adaptor_v2",
+        "hubspot_company_import_adaptor_v2",
+        "hubspot_product_import_adaptor_v2",
+        "hubspot_engagement_import_adaptor",
+        "hubspot_email_import_adaptor",
+        "hubspot_marketing_import_adaptor"
+      ],
+      "requiredExports": [
+        "shopify_customer_export_adaptor_v2",
+        "shopify_order_export_adaptor_v2",
+        "shopify_product_export_adaptor_v2",
+        "shopify_inventory_export_adaptor_v2",
+        "shopify_analytics_export_adaptor_v2",
+        "hubspot_contact_export_adaptor_v2",
+        "hubspot_deal_export_adaptor_v2",
+        "hubspot_company_export_adaptor_v2",
+        "hubspot_activity_export_adaptor_v2",
+        "hubspot_email_export_adaptor_v2",
+        "hubspot_marketing_export_adaptor_v2",
+        "hubspot_analytics_export_adaptor_v2",
+        "hubspot_pipeline_export_adaptor_v2",
+        "hubspot_ai_insights_export_adaptor",
+        "cross_platform_analytics_export_adaptor"
+      ],
+      "requiredFlows": [
+        "shopify_customer_sync_flow_v2",
+        "shopify_order_sync_flow_v2",
+        "shopify_product_sync_flow_v2",
+        "hubspot_contact_sync_flow_v2",
+        "hubspot_deal_sync_flow_v2",
+        "hubspot_company_sync_flow_v2",
+        "hubspot_activity_flow_v2",
+        "hubspot_email_campaign_flow_v2",
+        "shopify_abandoned_cart_flow_v2",
+        "hubspot_lead_scoring_flow_v2",
+        "ai_customer_insights_flow",
+        "predictive_lead_scoring_flow"
+      ]
+    },
+    "premium": {
+      "importsPerStore": 25,
+      "exportsPerStore": 35,
+      "flowsPerStore": 28,
+      "description": "Premium edition v2.0 with AI-powered CRM and advanced marketing automation",
+      "inheritsFrom": "starter",
+      "additionalImports": [
+        "shopify_ai_customer_insights_import",
+        "shopify_predictive_analytics_import",
+        "shopify_behavioral_tracking_import",
+        "shopify_customer_journey_import",
+        "shopify_revenue_intelligence_import",
+        "hubspot_ai_scoring_import",
+        "hubspot_predictive_lead_import",
+        "hubspot_advanced_workflow_import",
+        "hubspot_marketing_automation_import",
+        "hubspot_revenue_attribution_import",
+        "cross_platform_ai_import",
+        "real_time_personalization_import",
+        "advanced_segmentation_import"
+      ],
+      "additionalExports": [
+        "shopify_ai_recommendations_export",
+        "shopify_predictive_analytics_export",
+        "shopify_behavioral_insights_export",
+        "shopify_customer_lifetime_value_export",
+        "shopify_churn_prediction_export",
+        "hubspot_ai_lead_scoring_export",
+        "hubspot_predictive_deals_export",
+        "hubspot_advanced_automation_export",
+        "hubspot_marketing_attribution_export",
+        "hubspot_revenue_forecasting_export",
+        "cross_platform_ai_analytics_export",
+        "real_time_personalization_export",
+        "advanced_customer_segmentation_export",
+        "ai_driven_campaign_optimization_export",
+        "predictive_customer_behavior_export",
+        "advanced_lead_qualification_export",
+        "intelligent_content_recommendation_export",
+        "automated_deal_progression_export",
+        "smart_email_optimization_export",
+        "ai_powered_retention_export"
+      ],
+      "additionalFlows": [
+        "shopify_ai_customer_insights_flow",
+        "shopify_predictive_analytics_flow",
+        "shopify_behavioral_tracking_flow",
+        "shopify_customer_journey_mapping_flow",
+        "shopify_ai_product_recommendations_flow",
+        "hubspot_ai_lead_scoring_flow",
+        "hubspot_predictive_deal_flow",
+        "hubspot_advanced_workflow_flow",
+        "hubspot_marketing_automation_flow",
+        "hubspot_revenue_attribution_flow",
+        "cross_platform_ai_analytics_flow",
+        "real_time_personalization_flow",
+        "advanced_customer_segmentation_flow",
+        "ai_driven_campaign_optimization_flow",
+        "predictive_customer_behavior_flow",
+        "intelligent_lead_nurturing_flow"
+      ]
+    }
+  },
+  
+  "productSpecificRules": {
+    "description": "Enhanced Shopify-HubSpot v2.0 specific validation rules",
+    "hubspotValidation": {
+      "requireHubSpotConnection": true,
+      "requiredHubSpotProperties": [
+        "hubspotConnectionId",
+        "hubspotPortalId", 
+        "hubspotAPIKey",
+        "hubspotAIConfig",
+        "hubspotMLModels"
+      ],
+      "validateHubSpotSync": true,
+      "requireAIFeatures": true,
+      "validateMLModels": true
+    },
+    "shopifyValidation": {
+      "requireShopifyConnection": true,
+      "validateWebhooks": true,
+      "requiredShopifyFeatures": [
+        "customer_api",
+        "order_api",
+        "product_api", 
+        "analytics_api",
+        "ai_recommendations",
+        "behavioral_tracking"
+      ],
+      "requireShopifyPlusFeatures": true,
+      "requireAISubscription": true
+    },
+    "aiValidation": {
+      "requireAIConfiguration": true,
+      "validateMLModels": true,
+      "requireCustomerInsights": true,
+      "validatePredictiveAnalytics": true,
+      "requireEthicsCompliance": true
+    }
+  },
+  
+  "versionSpecificRules": {
+    "description": "Shopify-HubSpot v2.0 specific features and requirements",
+    "newFeatures": [
+      "ai_customer_insights",
+      "predictive_lead_scoring", 
+      "behavioral_tracking",
+      "real_time_personalization",
+      "advanced_marketing_automation",
+      "revenue_attribution_modeling"
+    ],
+    "deprecatedFeatures": [
+      "legacy_hubspot_v2_sync",
+      "basic_lead_scoring"
+    ],
+    "breakingChanges": [
+      "new_ai_configuration_required",
+      "enhanced_authentication_model",
+      "updated_data_structures"
+    ],
+    "migrationRequirements": {
+      "fromV1": {
+        "required": true,
+        "aiConfigurationSetup": true,
+        "dataBackupRequired": true,
+        "testingRequired": true
+      }
+    }
+  },
+  
+  "licenseValidation": {
+    "validEditions": ["starter", "premium"],
+    "maxSettingsSize": 2097152,
+    "productFamily": "shopify-hubspot",
+    "requiresAILicense": true,
+    "requiresCRMAdvancedTier": true
+  },
+  
+  "requiredProperties": {
+    "topLevel": ["settings", "version"],
+    "settingsLevel": ["connectorEdition", "hubspotConfig", "shopifyConfig", "aiConfig"],
+    "hubspotConfig": ["hubspotConnectionId", "hubspotPortalId", "hubspotAPIKey", "hubspotAIConfig"],
+    "shopifyConfig": ["shopifyConnectionId", "shopifyStoreUrl", "shopifyAPIKey", "shopifyAIConfig"],
+    "aiConfig": ["mlModelVersion", "customerInsightsEnabled", "predictiveAnalyticsEnabled"]
+  },
+  
+  "offlineConnectionRules": {
+    "detectOfflineWithActiveResources": true,
+    "crossReferenceFields": { "imports": "connectionId", "exports": "connectionId" },
+    "connectionOfflineValues": [true, "true", "1"],
+    "severity": "high"
+  },
+  
+  "updateProcessRules": {
+    "updateInProgressField": "updateInProgress",
+    "updateInProgressValues": [true, "true", "1"],
+    "csvFieldName": "UPDATEINPROGRESS",
+    "severity": "critical"
+  },
+  
+  "tolerances": {
+    "resourceCountTolerance": 0,
+    "aiModelAccuracyTolerance": 0.90,
+    "customerInsightAccuracy": 0.85
+  },
+  
+  "metadata": {
+    "businessOwner": "CRM AI Integration Team",
+    "technicalOwner": "HubSpot AI Team",
+    "lastReviewed": "2025-09-23",
+    "reviewCycle": "weekly",
+    "changeApprovalRequired": true,
+    "majorVersion": true,
+    "aiEnabled": true
+  }
+}

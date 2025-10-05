@@ -1,0 +1,105 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Business Rules Configuration Schema",
+  "description": "JSON Schema for validating business rules configuration",
+  "type": "object",
+  "required": ["editionRequirements", "licenseValidation", "requiredProperties"],
+  "properties": {
+    "editionRequirements": {
+      "type": "object",
+      "description": "Resource requirements by integration edition",
+      "patternProperties": {
+        "^(starter|standard|premium|shopifymarkets|markets)$": {
+          "type": "object",
+          "required": ["importsPerStore", "exportsPerStore", "flowsPerStore"],
+          "properties": {
+            "importsPerStore": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Number of imports required per store"
+            },
+            "exportsPerStore": {
+              "type": "integer", 
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Number of exports required per store"
+            },
+            "flowsPerStore": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Number of flows required per store"
+            },
+            "description": {
+              "type": "string",
+              "description": "Business description of this edition"
+            }
+          }
+        }
+      }
+    },
+    "licenseValidation": {
+      "type": "object",
+      "required": ["validEditions", "maxSettingsSize"],
+      "properties": {
+        "validEditions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["starter", "standard", "premium", "shopifymarkets", "markets"]
+          },
+          "minItems": 1,
+          "description": "List of valid license edition values"
+        },
+        "maxSettingsSize": {
+          "type": "integer",
+          "minimum": 1024,
+          "maximum": 10485760,
+          "description": "Maximum size of settings JSON in bytes"
+        },
+        "caseSensitive": {
+          "type": "boolean",
+          "description": "Whether edition comparison is case sensitive"
+        }
+      }
+    },
+    "requiredProperties": {
+      "type": "object",
+      "required": ["topLevel", "settingsLevel", "commonresources"],
+      "properties": {
+        "topLevel": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Required top-level integration properties"
+        },
+        "settingsLevel": {
+          "type": "array", 
+          "items": { "type": "string" },
+          "description": "Required properties within settings object"
+        },
+        "commonresources": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Required properties within settings.commonresources"
+        },
+        "sectionProperties": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Required properties within each section"
+        }
+      }
+    },
+    "tolerances": {
+      "type": "object",
+      "properties": {
+        "resourceCountTolerance": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10,
+          "description": "Acceptable variance in resource counts (0 = exact match required)"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "environment": "production",
+  "description": "Production environment configuration for enterprise deployment",
+  
+  "system": {
+    "logLevel": "info",
+    "maxConcurrentIntegrations": 100,
+    "batchSize": 50,
+    "processingTimeout": 300000,
+    "enableMetrics": true,
+    "enableAuditLogging": true
+  },
+  
+  "safety": {
+    "requireConfirmationAbove": 100,
+    "maxActionsPerIntegration": 200,
+    "maxDestructiveActions": 50,
+    "enableCircuitBreaker": true,
+    "maintenanceWindowRequired": true,
+    "maintenanceWindow": {
+      "start": "02:00",
+      "end": "06:00", 
+      "timezone": "UTC",
+      "days": ["saturday", "sunday"]
+    }
+  },
+  
+  "validation": {
+    "strictModeEnabled": true,
+    "skipLargeIntegrations": true,
+    "maxIntegrationSizeBytes": 2097152,
+    "validateManifestCompliance": true
+  },
+  
+  "reporting": {
+    "generateExecutiveSummary": true,
+    "generateTechnicalReport": true,
+    "generateComplianceReport": true,
+    "reportRetentionDays": 90,
+    "enableRealTimeMetrics": true
+  },
+  
+  "rollback": {
+    "autoGenerateRestoreBundles": true,
+    "retainRestoreBundles": true,
+    "restoreBundleRetentionDays": 30,
+    "enableQuickRollback": true
+  }
+}

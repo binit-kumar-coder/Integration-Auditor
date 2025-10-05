@@ -1,0 +1,284 @@
+{
+  "product": "shopify-netsuite", 
+  "version": "2.0.0",
+  "name": "Shopify-NetSuite Integration Business Rules v2.0",
+  "description": "Next generation ERP integration with AI-powered business intelligence",
+  
+  "editionRequirements": {
+    "description": "Enhanced resource requirements for Shopify-NetSuite v2.0",
+    "starter": {
+      "importsPerStore": 20,
+      "exportsPerStore": 25,
+      "flowsPerStore": 20,
+      "description": "Starter edition v2.0 with enhanced ERP baseline",
+      "requiredImports": [
+        "shopify_auto_billing_cashsale_import_adaptor_v2",
+        "shopify_auto_billing_invoice_import_adaptor_v2",
+        "shopify_netsuite_cashsale_order_import_adaptor_v2",
+        "shopify_netsuite_customer_import_adaptor_v2",
+        "shopify_netsuite_customer_deposit_import_adaptor_v2",
+        "shopify_netsuite_inactivate_itemid_import_adaptor_v2",
+        "shopify_fulfillment_order_import_adaptor_v2",
+        "shopify_fulfillment_order_import_location_adaptor_v2",
+        "shopify_inventory_import_adaptor_v2",
+        "shopify_kit_inventory_import_adaptor_v2",
+        "shopify_nsUtil_import_adaptor_v2",
+        "shopify_netsuite_order_import_adaptor_v2",
+        "shopify_netsuite_store_info_import_adaptor_v2",
+        "shopify_netsuite_order_transactions_import_adaptor_v2",
+        "shopify_netsuite_variants_import_adaptor_v2",
+        "shopify_webhook_register_import_adaptor_v2",
+        "shopify_real_time_sync_import_adaptor",
+        "shopify_ai_insights_import_adaptor",
+        "netsuite_advanced_erp_import",
+        "netsuite_financial_intelligence_import"
+      ],
+      "requiredExports": [
+        "shopify_auto_billing_cashsale_export_adaptor_v2",
+        "shopify_auto_billing_invoice_export_adaptor_v2",
+        "shopify_batch_order_export_adaptor_v2",
+        "shopify_cashsale_orders_export_adaptor_v2",
+        "shopify_customer_export_adaptor_v2",
+        "shopify_customer_deposit_export_adaptor_v2",
+        "shopify_variant_delete_webhook_export_adaptor_v2",
+        "shopify_variant_delete_export_adaptor_v2",
+        "shopify_netsuite_fulfillment_export_adaptor_v2",
+        "shopify_fulfillment_order_lookup_adaptor_v2",
+        "shopify_netsuite_inventory_export_adaptor_v2",
+        "shopify_netsuite_kit_inventory_export_adaptor_v2",
+        "shopify_onDemand_order_export_adaptor_v2",
+        "shopify_order_export_adaptor_v2",
+        "shopify_shop_update_export_adaptor_v2",
+        "shopify_order_transaction_export_adaptor_v2",
+        "shopify_variants_export_adaptor_v2",
+        "shopify_variant_ids_webhook_export_adaptor_v2",
+        "shopify_variant_ids_export_adaptor_v2",
+        "shopify_real_time_export_adaptor",
+        "shopify_ai_recommendations_export_adaptor",
+        "netsuite_advanced_erp_export",
+        "netsuite_financial_intelligence_export",
+        "netsuite_ai_forecasting_export",
+        "cross_platform_business_intelligence_export"
+      ],
+      "requiredFlows": [
+        "shopify_auto_billing_cashsale_flow_v2",
+        "shopify_auto_billing_invoice_flow_v2",
+        "shopify_batch_order_import_flow_v2",
+        "shopify_cashsale_order_import_flow_v2",
+        "shopify_customer_import_flow_v2",
+        "shopify_customer_deposit_import_flow_v2",
+        "shopify_deleted_variants_import_flow_v2",
+        "shopify_netsuite_fulfillment_export_flow_v2",
+        "shopify_netsuite_inventory_export_flow_v2",
+        "shopify_netsuite_kit_inventory_export_flow_v2",
+        "shopify_onDemand_order_import_flow_v2",
+        "shopify_order_import_flow_v2",
+        "shopify_store_info_update_flow_v2",
+        "shopify_order_transactions_import_flow_v2",
+        "shopify_variants_import_flow_v2",
+        "shopify_variant_ids_import_flow_v2",
+        "shopify_real_time_sync_flow",
+        "shopify_ai_insights_flow",
+        "netsuite_advanced_erp_flow",
+        "netsuite_ai_business_intelligence_flow"
+      ]
+    },
+    "premium": {
+      "importsPerStore": 45,
+      "exportsPerStore": 55,
+      "flowsPerStore": 40,
+      "description": "Premium edition v2.0 with full AI and enterprise ERP features",
+      "inheritsFrom": "starter",
+      "additionalImports": [
+        "shopify_ai_product_recommendations_import",
+        "shopify_predictive_inventory_import",
+        "shopify_customer_lifetime_value_import",
+        "shopify_fraud_detection_import",
+        "shopify_pricing_optimization_import",
+        "shopify_supply_chain_intelligence_import",
+        "netsuite_ai_financial_planning_import",
+        "netsuite_predictive_demand_import",
+        "netsuite_automated_accounting_import",
+        "netsuite_compliance_automation_import",
+        "netsuite_advanced_reporting_import",
+        "netsuite_supply_chain_optimization_import",
+        "cross_platform_ai_orchestration_import",
+        "enterprise_data_governance_import",
+        "advanced_audit_trail_import",
+        "real_time_business_intelligence_import",
+        "predictive_business_modeling_import",
+        "automated_financial_reconciliation_import",
+        "ai_powered_exception_handling_import",
+        "enterprise_workflow_automation_import",
+        "advanced_compliance_monitoring_import",
+        "intelligent_data_validation_import",
+        "predictive_maintenance_import",
+        "ai_anomaly_detection_import",
+        "enterprise_security_monitoring_import"
+      ],
+      "additionalExports": [
+        "shopify_ai_business_insights_export",
+        "shopify_predictive_analytics_export",
+        "shopify_advanced_reporting_export",
+        "shopify_enterprise_dashboard_export",
+        "shopify_ai_optimization_export",
+        "netsuite_ai_financial_export",
+        "netsuite_predictive_planning_export",
+        "netsuite_automated_reporting_export",
+        "netsuite_compliance_dashboard_export",
+        "netsuite_supply_chain_export",
+        "netsuite_business_intelligence_export",
+        "cross_platform_enterprise_export",
+        "ai_powered_forecasting_export",
+        "enterprise_audit_export",
+        "real_time_monitoring_export",
+        "predictive_business_modeling_export",
+        "automated_exception_handling_export",
+        "intelligent_workflow_export",
+        "advanced_compliance_export",
+        "enterprise_security_export",
+        "ai_driven_optimization_export",
+        "predictive_maintenance_export",
+        "intelligent_anomaly_detection_export",
+        "enterprise_governance_export",
+        "advanced_business_intelligence_export"
+      ],
+      "additionalFlows": [
+        "shopify_ai_business_intelligence_flow",
+        "shopify_predictive_analytics_flow",
+        "shopify_enterprise_optimization_flow",
+        "netsuite_ai_financial_planning_flow",
+        "netsuite_predictive_demand_planning_flow",
+        "netsuite_automated_accounting_flow",
+        "netsuite_compliance_automation_flow",
+        "netsuite_supply_chain_optimization_flow",
+        "cross_platform_ai_orchestration_flow",
+        "enterprise_data_governance_flow",
+        "real_time_business_monitoring_flow",
+        "predictive_business_modeling_flow",
+        "automated_financial_reconciliation_flow",
+        "ai_powered_exception_handling_flow",
+        "enterprise_workflow_automation_flow"
+      ]
+    }
+  },
+  
+  "productSpecificRules": {
+    "description": "Enhanced Shopify-NetSuite v2.0 specific validation rules",
+    "netsuiteValidation": {
+      "requireNetSuiteConnection": true,
+      "requiredNetSuiteProperties": [
+        "netsuiteConnectionId",
+        "nsUtilImportAdaptorApiIdentifier",
+        "nsUtilImportAdaptorId",
+        "netsuiteAIConfig",
+        "netsuiteMLModels",
+        "netsuiteEnterpriseConfig"
+      ],
+      "validateNetSuiteSync": true,
+      "requireAIFeatures": true,
+      "requireEnterpriseFeatures": true,
+      "validateMLModels": true
+    },
+    "shopifyValidation": {
+      "requireShopifyConnection": true,
+      "validateWebhooks": true,
+      "requiredShopifyFeatures": [
+        "inventory_sync",
+        "order_sync",
+        "customer_sync",
+        "ai_recommendations",
+        "real_time_analytics",
+        "fraud_detection",
+        "predictive_inventory",
+        "enterprise_features"
+      ],
+      "requireShopifyPlusFeatures": true,
+      "requireEnterpriseSubscription": true
+    },
+    "aiValidation": {
+      "requireAIConfiguration": true,
+      "validateMLModels": true,
+      "requirePredictiveAnalytics": true,
+      "validateAIEthicsCompliance": true,
+      "requireEnterpriseAI": true
+    },
+    "enterpriseValidation": {
+      "requireEnterpriseSupport": true,
+      "validateGovernanceCompliance": true,
+      "requireAdvancedSecurity": true,
+      "validateDataGovernance": true
+    }
+  },
+  
+  "versionSpecificRules": {
+    "description": "Shopify-NetSuite v2.0 enterprise features",
+    "newFeatures": [
+      "enterprise_ai_intelligence",
+      "real_time_erp_synchronization",
+      "advanced_financial_automation",
+      "predictive_supply_chain_management",
+      "ai_powered_business_optimization",
+      "enterprise_compliance_automation"
+    ],
+    "breakingChanges": [
+      "deprecated_v1_api_endpoints",
+      "new_enterprise_authentication",
+      "enhanced_ai_data_structures"
+    ],
+    "compatibilityRequirements": {
+      "minNetSuiteVersion": "2024.2",
+      "minShopifyAPIVersion": "2024-07",
+      "requiresEnterpriseAILicense": true,
+      "requiresAdvancedERPTier": true
+    }
+  },
+  
+  "licenseValidation": {
+    "validEditions": ["starter", "premium", "enterprise"],
+    "maxSettingsSize": 5242880,
+    "productFamily": "shopify-netsuite",
+    "requiresAILicense": true,
+    "requiresEnterpriseSupport": true,
+    "requiresAdvancedERPFeatures": true
+  },
+  
+  "requiredProperties": {
+    "topLevel": ["settings", "version"],
+    "settingsLevel": ["connectorEdition", "commonresources", "aiConfig", "enterpriseConfig"],
+    "commonresources": ["netsuiteConnectionId", "nsUtilImportAdaptorApiIdentifier", "nsUtilImportAdaptorId"],
+    "aiConfig": ["mlModelVersion", "aiEthicsCompliance", "predictiveAnalyticsEnabled", "enterpriseAIEnabled"],
+    "enterpriseConfig": ["governanceCompliance", "advancedSecurity", "dataGovernance", "complianceAutomation"]
+  },
+  
+  "offlineConnectionRules": {
+    "detectOfflineWithActiveResources": true,
+    "crossReferenceFields": { "imports": "connectionId", "exports": "connectionId" },
+    "connectionOfflineValues": [true, "true", "1"],
+    "severity": "critical"
+  },
+  
+  "updateProcessRules": {
+    "updateInProgressField": "updateInProgress", 
+    "updateInProgressValues": [true, "true", "1"],
+    "csvFieldName": "UPDATEINPROGRESS",
+    "severity": "critical"
+  },
+  
+  "tolerances": {
+    "resourceCountTolerance": 0,
+    "aiModelAccuracyTolerance": 0.95,
+    "enterpriseComplianceTolerance": 0
+  },
+  
+  "metadata": {
+    "businessOwner": "Enterprise ERP Team",
+    "technicalOwner": "AI ERP Integration Team",
+    "lastReviewed": "2025-09-23",
+    "reviewCycle": "weekly",
+    "changeApprovalRequired": true,
+    "majorVersion": true,
+    "enterpriseGrade": true,
+    "aiEnabled": true
+  }
+}

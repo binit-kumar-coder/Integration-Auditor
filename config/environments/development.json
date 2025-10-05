@@ -1,0 +1,43 @@
+{
+  "environment": "development",
+  "description": "Development environment configuration for testing and validation",
+  
+  "system": {
+    "logLevel": "debug",
+    "maxConcurrentIntegrations": 10,
+    "batchSize": 5,
+    "processingTimeout": 60000,
+    "enableMetrics": true,
+    "enableAuditLogging": true
+  },
+  
+  "safety": {
+    "requireConfirmationAbove": 10,
+    "maxActionsPerIntegration": 50,
+    "maxDestructiveActions": 10,
+    "enableCircuitBreaker": false,
+    "maintenanceWindowRequired": false
+  },
+  
+  "validation": {
+    "strictModeEnabled": false,
+    "skipLargeIntegrations": false,
+    "maxIntegrationSizeBytes": 10485760,
+    "validateManifestCompliance": false
+  },
+  
+  "reporting": {
+    "generateExecutiveSummary": true,
+    "generateTechnicalReport": true,
+    "generateComplianceReport": false,
+    "reportRetentionDays": 7,
+    "enableRealTimeMetrics": false
+  },
+  
+  "rollback": {
+    "autoGenerateRestoreBundles": true,
+    "retainRestoreBundles": false,
+    "restoreBundleRetentionDays": 7,
+    "enableQuickRollback": true
+  }
+}
