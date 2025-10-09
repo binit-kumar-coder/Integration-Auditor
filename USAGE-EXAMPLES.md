@@ -280,7 +280,7 @@ curl -X POST https://remediation.company.com/api/remediation/plans \
 integration-auditor state --show
 
 # View state for specific operator
-integration-auditor state --show --operator john.doe
+integration-auditor state --show --operator binitkumar
 
 # Export state for backup
 integration-auditor state --export backup-$(date +%Y%m%d).json

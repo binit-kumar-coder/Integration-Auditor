@@ -7,6 +7,9 @@
 import express from 'express';
 import { EnterpriseRemediationService, RemediationJob } from '../remediation/remediation-service';
 import { StateManager } from '../state/state-manager';
+import { createAPIRouter } from '../api/routes';
+import { openApiSpec } from '../api/openapi-spec';
+import swaggerUi from 'swagger-ui-express';
 import * as fs from 'fs/promises';
 
 export class RemediationServer {
@@ -283,6 +286,22 @@ export class RemediationServer {
       } catch (error) {
         res.status(500).json({ error: 'Failed to get state' });
       }
+    });
+
+    // Mount API routes using enterprise pattern
+    const apiRouter = createAPIRouter(this.stateManager);
+    this.app.use('/', apiRouter);
+
+    // Swagger API Documentation
+    this.app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(openApiSpec, {
+      explorer: true,
+      customCss: '.swagger-ui .topbar { display: none }',
+      customSiteTitle: 'Integration Auditor API Documentation'
+    }));
+
+    // API specification endpoint
+    this.app.get('/api/openapi.json', (req, res) => {
+      res.json(openApiSpec);
     });
   }
 
