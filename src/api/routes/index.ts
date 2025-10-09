@@ -3,7 +3,7 @@
  * Centralized route management with proper separation of concerns
  */
 
-import { Router } from 'express';
+import { Router, Request, Response } from 'express';
 import { healthRoutes } from './health';
 import { createSystemRoutes } from './system';
 import { configRoutes } from './config';
@@ -19,17 +19,29 @@ import { StateManager } from '../../state/state-manager';
 export function createAPIRouter(stateManager: StateManager): Router {
   const router = Router();
 
-  // Mount route modules
+  // Mount health routes at root level for /health endpoint
   router.use('/', healthRoutes);
-  router.use('/api/system', createSystemRoutes(stateManager));
-  router.use('/api/config', configRoutes);
-  router.use('/api/business-rules', businessRulesRoutes);
-  router.use('/api/state', createStateRoutes(stateManager));
-  router.use('/api/fix', createFixRoutes(stateManager));
-  router.use('/api/audit', auditRoutes);
-  router.use('/api/products', productsRoutes);
-  router.use('/api/cli', cliRoutes);
-  router.use('/api/files', filesRoutes);
+  
+  // Create dedicated health endpoint for /api/health
+  router.get('/api/health', (req: Request, res: Response) => {
+    res.json({
+      status: 'healthy',
+      timestamp: new Date().toISOString(),
+      service: 'integration-auditor-remediation',
+      version: '1.0.0'
+    });
+  });
+  
+  // Mount all API routes under /api prefix (routes define their own sub-paths)
+  router.use('/api', createSystemRoutes(stateManager)); // /api/system/*
+  router.use('/api', configRoutes); // /api/config/*  
+  router.use('/api', businessRulesRoutes); // /api/business-rules/*
+  router.use('/api', createStateRoutes(stateManager)); // /api/state/*
+  router.use('/api', createFixRoutes(stateManager)); // /api/fix/*
+  router.use('/api', auditRoutes); // /api/audit/* and /api/corruption/*
+  router.use('/api', productsRoutes); // /api/products/*
+  router.use('/api', cliRoutes); // /api/cli/*
+  router.use('/api', filesRoutes); // /api/files/*
 
   return router;
 }

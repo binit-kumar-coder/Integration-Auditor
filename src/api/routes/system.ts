@@ -17,7 +17,7 @@ export function createSystemRoutes(stateManager: StateManager): Router {
    *     summary: System Status
    *     description: CLI equivalent - integration-auditor status
    */
-  router.get('/status', async (req: Request, res: Response) => {
+  router.get('/system/status', async (req: Request, res: Response) => {
     try {
       const stats = await stateManager.getProcessingStats();
       res.json({
@@ -55,7 +55,7 @@ export function createSystemRoutes(stateManager: StateManager): Router {
    *     tags: [Health & System]
    *     summary: Version Information
    */
-  router.get('/version', (req: Request, res: Response) => {
+  router.get('/system/version', (req: Request, res: Response) => {
     res.json({
       version: '1.0.0',
       name: 'Integration Auditor',

@@ -17,7 +17,7 @@ export const auditRoutes = Router();
  *     summary: Run Audit
  *     description: CLI equivalent - integration-auditor audit --tier tier1
  */
-auditRoutes.post('/run', async (req: Request, res: Response) => {
+auditRoutes.post('/audit/run', async (req: Request, res: Response) => {
   try {
     const {
       tier = 'tier1',
@@ -98,7 +98,7 @@ auditRoutes.post('/run', async (req: Request, res: Response) => {
  *     summary: Audit Specific Tier
  *     description: Audit integrations in a specific tier
  */
-auditRoutes.post('/tier/:tier', async (req: Request, res: Response) => {
+auditRoutes.post('/audit/tier/:tier', async (req: Request, res: Response) => {
   try {
     const tier = req.params['tier'];
     const { edition, operatorId = 'api-user' } = req.body;
@@ -139,7 +139,7 @@ auditRoutes.post('/tier/:tier', async (req: Request, res: Response) => {
  *     summary: Audit Specific Product
  *     description: CLI equivalent - integration-auditor audit --product shopify-hubspot
  */
-auditRoutes.post('/product/:product', async (req: Request, res: Response) => {
+auditRoutes.post('/audit/product/:product', async (req: Request, res: Response) => {
   try {
     const product = req.params['product'];
     const { tier = 'tier1', version = '1.51.0', operatorId = 'api-user' } = req.body;

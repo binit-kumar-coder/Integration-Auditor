@@ -54,15 +54,7 @@ export class RemediationServer {
    * Setup API routes
    */
   private setupRoutes(): void {
-    // Health check
-    this.app.get('/health', (req, res) => {
-      res.json({ 
-        status: 'healthy', 
-        timestamp: new Date().toISOString(),
-        service: 'integration-auditor-remediation',
-        version: '1.0.0'
-      });
-    });
+    // Note: Health check is now handled by API router
 
     // API equivalent of --help
     this.app.get('/api/help', (req, res) => {
@@ -177,13 +169,24 @@ export class RemediationServer {
     // Submit new remediation plan (KEY ENDPOINT)
     this.app.post('/api/remediation/plans', async (req, res) => {
       try {
-        const { jobs, metadata } = req.body;
+        const { sessionId, actions, jobs, metadata } = req.body;
         const planId = `plan_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
         
         const jobIds: string[] = [];
         
+        // Handle both formats: direct actions or jobs array
+        const jobsToProcess = jobs || [{ 
+          integrationId: sessionId || 'unknown',
+          email: 'api-user@example.com',
+          actions: actions || [],
+          priority: 5,
+          operatorId: 'api-user',
+          environment: 'production',
+          metadata: metadata || {}
+        }];
+        
         // Submit all jobs from the plan
-        for (const job of jobs) {
+        for (const job of jobsToProcess) {
           const jobId = await this.remediationService.submitJob({
             integrationId: job.integrationId,
             email: job.email,
@@ -203,7 +206,7 @@ export class RemediationServer {
           planId,
           jobIds,
           totalJobs: jobIds.length,
-          totalActions: jobs.reduce((sum: number, job: any) => sum + job.actions.length, 0),
+          totalActions: jobsToProcess.reduce((sum: number, job: any) => sum + (job.actions?.length || 0), 0),
           status: 'queued',
           submittedAt: new Date().toISOString()
         });
@@ -278,20 +281,6 @@ export class RemediationServer {
       }
     });
 
-    // Get processing state
-    this.app.get('/api/state', async (req, res) => {
-      try {
-        const stats = await this.stateManager.getProcessingStats();
-        res.json(stats);
-      } catch (error) {
-        res.status(500).json({ error: 'Failed to get state' });
-      }
-    });
-
-    // Mount API routes using enterprise pattern
-    const apiRouter = createAPIRouter(this.stateManager);
-    this.app.use('/', apiRouter);
-
     // Swagger API Documentation
     this.app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(openApiSpec, {
       explorer: true,
@@ -302,6 +291,20 @@ export class RemediationServer {
     // API specification endpoint
     this.app.get('/api/openapi.json', (req, res) => {
       res.json(openApiSpec);
+    });
+
+    // Mount API routes using enterprise pattern
+    const apiRouter = createAPIRouter(this.stateManager);
+    this.app.use('/', apiRouter);
+
+    // Get processing state (fallback if not handled by API router)
+    this.app.get('/api/state/processing', async (req, res) => {
+      try {
+        const stats = await this.stateManager.getProcessingStats();
+        res.json(stats);
+      } catch (error) {
+        res.status(500).json({ error: 'Failed to get state' });
+      }
     });
   }
 

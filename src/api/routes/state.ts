@@ -17,7 +17,7 @@ export function createStateRoutes(stateManager: StateManager): Router {
    *     summary: Cleanup State
    *     description: CLI equivalent - integration-auditor state --cleanup
    */
-  router.post('/cleanup', async (req: Request, res: Response) => {
+  router.post('/state/cleanup', async (req: Request, res: Response) => {
     try {
       const { olderThanDays } = req.body;
       const cleaned = await stateManager.cleanup(olderThanDays || 30);
@@ -44,7 +44,7 @@ export function createStateRoutes(stateManager: StateManager): Router {
    *     summary: Export State
    *     description: CLI equivalent - integration-auditor state --export
    */
-  router.get('/export', async (req: Request, res: Response) => {
+  router.get('/state/export', async (req: Request, res: Response) => {
     try {
       const stateData = await stateManager.exportState();
       
@@ -69,7 +69,7 @@ export function createStateRoutes(stateManager: StateManager): Router {
    *     summary: Import State
    *     description: CLI equivalent - integration-auditor state --import
    */
-  router.post('/import', async (req: Request, res: Response) => {
+  router.post('/state/import', async (req: Request, res: Response) => {
     try {
       const { stateData } = req.body;
       await stateManager.importState(stateData);

@@ -22,7 +22,7 @@ export function createFixRoutes(stateManager: StateManager): Router {
    *     summary: Fix Dry Run
    *     description: CLI equivalent - integration-auditor fix --edition premium --dry-run
    */
-  router.post('/dry-run', async (req: Request, res: Response) => {
+  router.post('/fix/dry-run', async (req: Request, res: Response) => {
     try {
       const {
         edition = 'standard',
@@ -137,7 +137,7 @@ export function createFixRoutes(stateManager: StateManager): Router {
    *     summary: Fix Apply
    *     description: CLI equivalent - integration-auditor fix --edition premium --apply
    */
-  router.post('/apply', async (req: Request, res: Response) => {
+  router.post('/fix/apply', async (req: Request, res: Response) => {
     try {
       const {
         edition = 'standard',
